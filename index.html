@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ikeys Apps Mobile | Calculadoras, Jogos e Utilitários</title>
+    <meta name="description" content="Aplicativos profissionais para hidráulica, elétrica, pintura, construção, marketplace de serviços, jogos e tradutor de voz. Baixe agora no Google Play.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e17;
+            --card: #121826;
+            --accent: #00b4ff;
+            --accent2: #ffb800;
+            --text: #e8eef7;
+            --muted: #8b9bb4;
+            --success: #22c55e;
+            --border: #1e2a3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(180deg, #0f1623 0%, var(--bg) 100%);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent), #0066ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .logo-text { font-weight: 700; font-size: 1.25rem; }
+        .logo-text span { color: var(--accent); }
+
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--accent); }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 2.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a0c4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 1.4rem;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .app-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 180, 255, 0.12);
+        }
+
+        .app-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            background: #0d121c;
+            display: block;
+            cursor: pointer;
+        }
+
+        .app-body {
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.6rem;
+            width: fit-content;
+        }
+
+        .tag-calc { background: rgba(0, 180, 255, 0.15); color: var(--accent); }
+        .tag-game { background: rgba(255, 184, 0, 0.15); color: var(--accent2); }
+        .tag-service { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .tag-util { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+        .app-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .app-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; flex: 1; }
+
+        .app-features { list-style: none; margin-bottom: 1.25rem; }
+        .app-features li {
+            font-size: 0.82rem;
+            color: var(--muted);
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .app-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .app-actions { display: flex; gap: 0.75rem; margin-top: auto; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #0066ff);
+            color: #fff;
+        }
+        .btn-primary:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        footer {
+            border-top: 1px solid var(--border);
+            background: #080c14;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .footer-text { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .copyright { color: #5a6a80; font-size: 0.8rem; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .modal.active { display: flex; }
+        .modal img {
+            max-width: 95%;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 640px) {
+            .header-inner { flex-direction: column; gap: 0.75rem; }
+            nav { gap: 1rem; }
+            .apps-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">iA</div>
+                <div class="logo-text">ikeys <span>Apps Mobile</span></div>
+            </a>
+            <nav>
+                <a href="#apps">Aplicativos</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Calcule. Dimensione. Execute. Jogue.</h1>
+        <p>Aplicativos profissionais e jogos para o dia a dia. Cálculos técnicos, serviços, tradutor de voz e puzzles tropicais. Precisão e diversão no seu bolso.</p>
+        <div class="badge-row">
+            <span class="badge">📐 Cálculos Técnicos</span>
+            <span class="badge">🏗️ Construção</span>
+            <span class="badge">⚡ Elétrica</span>
+            <span class="badge">💧 Hidráulica</span>
+            <span class="badge">🎨 Pintura</span>
+            <span class="badge">🛠️ Serviços</span>
+            <span class="badge">🎮 Jogos</span>
+            <span class="badge">🌐 Tradutor</span>
+        </div>
+    </section>
+
+    <section class="section" id="apps">
+        <h2 class="section-title">Nossos Aplicativos</h2>
+        <p class="section-sub">Ferramentas profissionais disponíveis no Google Play. Toque na imagem para ampliar o poster.</p>
+
+        <div class="apps-grid">
+
+            <!-- Calc Hidráulica Pro -->
+            <article class="app-card">
+                <img src="images/calc-hidraulica.jpg" alt="Calc Hidráulica Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-calc">Cálculos</span>
+                    <h3 class="app-title">Calc Hidráulica Pro</h3>
+                    <p class="app-desc">Cálculos hidráulicos rápidos e confiáveis para encanadores, hidráulicos, instaladores e projetistas.</p>
+                    <ul class="app-features">
+                        <li>Dimensionamento de tubos</li>
+                        <li>Queda de pressão</li>
+                        <li>Volume de caixa d'água</li>
+                        <li>Cálculo de bombas e vazão</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/calc-hidraulica.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Calc Elétrico Pro -->
+            <article class="app-card">
+                <img src="images/calc-eletrico.jpg" alt="Calc Elétrico Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-calc">Cálculos</span>
+                    <h3 class="app-title">Calc Elétrico Pro</h3>
+                    <p class="app-desc">Cálculos elétricos rápidos e confiáveis conforme NBR 5410 para eletricistas e técnicos.</p>
+                    <ul class="app-features">
+                        <li>Dimensionamento de cabos</li>
+                        <li>Queda de tensão</li>
+                        <li>Potência e corrente</li>
+                        <li>Recomendação de disjuntores</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/calc-eletrico.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Calc Pintura Pro -->
+            <article class="app-card">
+                <img src="images/calc-pintura.jpg" alt="Calc Pintura Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-calc">Cálculos</span>
+                    <h3 class="app-title">Calc Pintura Pro</h3>
+                    <p class="app-desc">Cálculos de pintura rápidos e confiáveis para pintores, decoradores, empreiteiros e projetistas.</p>
+                    <ul class="app-features">
+                        <li>Área de paredes e teto</li>
+                        <li>Portas e janelas</li>
+                        <li>Rendimento por tipo de tinta</li>
+                        <li>Distribuição em latas e custo</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/calc-pintura.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Calculadora Construção Pro -->
+            <article class="app-card">
+                <img src="images/calc-construcao.jpg" alt="Calculadora Construção Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-calc">Cálculos</span>
+                    <h3 class="app-title">Calculadora Construção Pro</h3>
+                    <p class="app-desc">Cálculos de construção rápidos e confiáveis para pedreiros, engenheiros, mestres de obra e projetistas.</p>
+                    <ul class="app-features">
+                        <li>Cálculo de concreto</li>
+                        <li>Quantidade de tijolos</li>
+                        <li>Argamassa e traço</li>
+                        <li>Área, volume e orçamento</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/calc-construcao.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Serviço Rápido -->
+            <article class="app-card">
+                <img src="images/servico-rapido.jpg" alt="Serviço Rápido" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-service">Marketplace</span>
+                    <h3 class="app-title">Serviço Rápido</h3>
+                    <p class="app-desc">Marketplace Android que conecta você aos melhores profissionais locais. Solicite, avalie e resolva.</p>
+                    <ul class="app-features">
+                        <li>Busca por categorias</li>
+                        <li>Vitrine de profissionais</li>
+                        <li>Avaliações reais</li>
+                        <li>Pagamentos no Play Console</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/servico-rapido.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Mike & Caramela -->
+            <article class="app-card">
+                <img src="images/mike-caramela.jpg" alt="Mike & Caramela no Labirinto" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-game">Jogo</span>
+                    <h3 class="app-title">Mike & Caramela no Labirinto</h3>
+                    <p class="app-desc">Corra, colete, vença! Colete ossos, supere desafios e viva essa aventura com Mike e os Caramelos.</p>
+                    <ul class="app-features">
+                        <li>5 temas de cores</li>
+                        <li>Osso dourado + transformação</li>
+                        <li>Hall da Fama online</li>
+                        <li>Áudio canino 100% original</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/mike-caramela.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Puzzleland -->
+            <article class="app-card">
+                <img src="images/puzzleland.jpg" alt="Puzzleland" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-game">Jogo</span>
+                    <h3 class="app-title">Puzzleland</h3>
+                    <p class="app-desc">Encaixe as peças, complete linhas e conquiste a ilha mágica! Encaixe. Complete. Domine.</p>
+                    <ul class="app-features">
+                        <li>10 níveis temáticos tropicais</li>
+                        <li>Ranking online “Sala da Ilha”</li>
+                        <li>Integrado ao Google Play Games</li>
+                        <li>Controles: Toque, Botões e Acelerômetro</li>
+                        <li>Português, Inglês e Espanhol</li>
+                        <li>Modo claro e escuro</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/puzzleland.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Voice Translator -->
+            <article class="app-card">
+                <img src="images/voice-translator.jpg" alt="Voice Translator" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <div class="app-body">
+                    <span class="app-tag tag-util">Utilitário</span>
+                    <h3 class="app-title">Voice Translator</h3>
+                    <p class="app-desc">Traduza voz e texto em 36 idiomas com um toque! Fale. Traduza. Entenda.</p>
+                    <ul class="app-features">
+                        <li>Reconhecimento de voz inteligente</li>
+                        <li>36 idiomas disponíveis</li>
+                        <li>Tradução instantânea</li>
+                        <li>Ouça a tradução em voz alta</li>
+                        <li>Histórico de traduções</li>
+                        <li>Interface simples e rápida</li>
+                    </ul>
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
+                        <button class="btn btn-secondary" onclick="openModal('images/voice-translator.jpg')">Ver poster</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="section" id="sobre" style="padding-top: 0;">
+        <h2 class="section-title">Sobre nós</h2>
+        <p class="section-sub" style="max-width: 700px;">
+            Desenvolvemos aplicativos profissionais e jogos focados em precisão, praticidade e diversão. 
+            Nossas ferramentas ajudam profissionais do dia a dia a calcular, dimensionar e executar com mais segurança e produtividade — além de jogos como Puzzleland e utilitários como o Voice Translator.
+        </p>
+    </section>
+
+    <section class="section" id="contato" style="padding-top: 0;">
+        <h2 class="section-title">Contato</h2>
+        <p class="section-sub">
+            Dúvidas, sugestões ou parcerias?<br><br>
+            📧 E-mail: <a href="mailto:ikeys3d@gmail.com" style="color: var(--accent); font-weight: 600; text-decoration: none;">ikeys3d@gmail.com</a><br>
+            📱 WhatsApp: <a href="https://wa.me/5531995591195" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600; text-decoration: none;">+55 31 99559-1195</a>
+        </p>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-title">ikeys Apps Mobile — Precisão e diversão no seu bolso</div>
+            <p class="footer-text">Aplicativos para hidráulica, elétrica, pintura, construção, serviços, jogos e tradução.</p>
+            <div class="footer-links">
+                <a href="#apps">Aplicativos</a>
+                <a href="#contato">Contato</a>
+                <a href="https://play.google.com/store" target="_blank" rel="noopener">Google Play</a>
+            </div>
+            <p class="copyright">© 2026 ikeys Apps Mobile. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="modal" onclick="closeModal()">
+        <img id="modal-img" src="" alt="Poster ampliado">
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
