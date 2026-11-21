@@ -14,8 +14,8 @@
             --card: #121826;
             --accent: #00b4ff;
             --accent2: #ffb800;
-            --text: #e8eef7;
-            --muted: #8b9bb4;
+            --text: #ffffff;
+            --muted: #c5d0e0;
             --success: #22c55e;
             --border: #1e2a3a;
         }
@@ -28,10 +28,41 @@
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background image - full screen, fixed, semi-transparent */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/logo-bg.png');
+            background-size: min(70vmin, 520px);
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0.55;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Overlay to keep content readable */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10, 14, 23, 0.35) 0%, rgba(10, 14, 23, 0.50) 50%, rgba(10, 14, 23, 0.65) 100%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         header {
-            background: linear-gradient(180deg, #0f1623 0%, var(--bg) 100%);
+            background: linear-gradient(180deg, rgba(15, 22, 35, 0.92) 0%, rgba(10, 14, 23, 0.88) 100%);
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
@@ -178,7 +209,7 @@
         .app-image {
             width: 100%;
             aspect-ratio: 4/5;
-            object-fit: cover;
+            object-fit: contain;
             background: #0d121c;
             display: block;
             cursor: pointer;
@@ -313,7 +344,7 @@
         <div class="header-inner">
             <a href="#" class="logo">
                 <div class="logo-icon">iA</div>
-                <div class="logo-text">ikeys <span>Apps Mobile</span></div>
+                <div class="logo-text"><span>Apps Mobile</span></div>
             </a>
             <nav>
                 <a href="#apps">Aplicativos</a>
@@ -346,7 +377,7 @@
 
             <!-- Calc Hidráulica Pro -->
             <article class="app-card">
-                <img src="images/calc-hidraulica.jpg" alt="Calc Hidráulica Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <img src="images/calc-hidraulica.png" alt="Calc Hidráulica Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
                 <div class="app-body">
                     <span class="app-tag tag-calc">Cálculos</span>
                     <h3 class="app-title">Calc Hidráulica Pro</h3>
@@ -358,15 +389,14 @@
                         <li>Cálculo de bombas e vazão</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/calc-hidraulica.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.calchidraulicapro" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
 
             <!-- Calc Elétrico Pro -->
             <article class="app-card">
-                <img src="images/calc-eletrico.jpg" alt="Calc Elétrico Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
+                <img src="images/calc-eletrico.png" alt="Calc Elétrico Pro" class="app-image" onclick="openModal(this.src)" loading="lazy">
                 <div class="app-body">
                     <span class="app-tag tag-calc">Cálculos</span>
                     <h3 class="app-title">Calc Elétrico Pro</h3>
@@ -378,8 +408,7 @@
                         <li>Recomendação de disjuntores</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/calc-eletrico.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.calculadoraeletricopro" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -398,8 +427,7 @@
                         <li>Distribuição em latas e custo</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/calc-pintura.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.calcpinturapro" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -418,8 +446,7 @@
                         <li>Área, volume e orçamento</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/calc-construcao.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.calculadoraconstrucaopro" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -438,8 +465,7 @@
                         <li>Pagamentos no Play Console</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/servico-rapido.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.servicorapido.ikeys" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -458,8 +484,7 @@
                         <li>Áudio canino 100% original</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/mike-caramela.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.landofpacman" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -480,8 +505,7 @@
                         <li>Modo claro e escuro</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/puzzleland.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.tetrisland" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -502,8 +526,7 @@
                         <li>Interface simples e rápida</li>
                     </ul>
                     <div class="app-actions">
-                        <a href="https://play.google.com/store" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
-                        <button class="btn btn-secondary" onclick="openModal('images/voice-translator.jpg')">Ver poster</button>
+                        <a href="https://play.google.com/store/apps/details?id=com.ikeys.voicetranslator" target="_blank" rel="noopener" class="btn btn-primary">Google Play</a>
                     </div>
                 </div>
             </article>
@@ -515,7 +538,7 @@
         <h2 class="section-title">Sobre nós</h2>
         <p class="section-sub" style="max-width: 700px;">
             Desenvolvemos aplicativos profissionais e jogos focados em precisão, praticidade e diversão. 
-            Nossas ferramentas ajudam profissionais do dia a dia a calcular, dimensionar e executar com mais segurança e produtividade — além de jogos como Puzzleland e utilitários como o Voice Translator.
+            Nossas ferramentas ajudam profissionais do dia a dia a calcular, dimensionar e executar com mais segurança e produtividade.
         </p>
     </section>
 
