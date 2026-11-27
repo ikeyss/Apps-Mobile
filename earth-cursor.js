@@ -4,19 +4,22 @@ if (typeof THREE === 'undefined') { console.error('[earth-cursor] Three.js não 
 
 /* ========= CONFIGURAÇÃO (ajuste aqui) ========= */
 const CONFIG = {
-  // Para produção, baixe a imagem para o seu repositório (ex.: './img/earth.jpg')
-  texture:
+  texture: [
     'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/textures/planets/earth_atmos_2048.jpg',
+    'images/earth_atmos_2048.jpg', // reserva local
+  ],
   clockwise: true,          // sentido horário visto de cima do polo norte
   secondsPerRotation: 24,   // tempo de uma volta da Terra
-  sizeVsViewport: 0.12,     // tamanho do conjunto (Terra + arcos) em relação à tela
+  sizeVsViewport: 0.24,     // tamanho do conjunto (Terra + arcos) em relação à tela
   followSpeed: 3.2,         // quanto maior, mais rápido segue o mouse
   zIndex: 150,
 };
 
 const MOON = {
-  texture:
+  texture: [
     'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/textures/planets/moon_1024.jpg',
+    'images/moon_1024.jpg', // reserva local
+  ],
   radius: 1737.4 / 6371, // tamanho real da Lua em relação à Terra (≈ 0,273 do raio da Terra, que vale 1)
   orbitRadius: 2.2,   // distância até a Terra (comprimida: a real seria ~60 raios da Terra, não cabe na tela)
   orbitSec: 14,       // tempo de uma volta da Lua ao redor da Terra
@@ -32,6 +35,18 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const speedFactor = reduceMotion ? 0.3 : 1;
 const TAU = Math.PI * 2;
 const deg = (d) => (d * Math.PI) / 180;
+
+// Carrega a primeira textura que funcionar da lista (CDN primeiro, depois a cópia local)
+function loadTexture(urls, onLoad) {
+  const list = Array.isArray(urls) ? urls : [urls];
+  const loader = new THREE.TextureLoader();
+  loader.setCrossOrigin('anonymous');
+  const tryAt = (i) => {
+    if (i >= list.length) { console.warn('[earth-cursor] textura não carregou:', list); return; }
+    loader.load(list[i], onLoad, undefined, () => tryAt(i + 1));
+  };
+  tryAt(0);
+}
 
 /* ---------- Renderer / cena ---------- */
 let renderer;
@@ -77,7 +92,7 @@ const earth = new THREE.Mesh(
 );
 earthTilt.add(earth);
 
-new THREE.TextureLoader().load(CONFIG.texture, (tex) => {
+loadTexture(CONFIG.texture, (tex) => {
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
   earth.material.map = tex;
@@ -127,7 +142,7 @@ moon.position.x = MOON.orbitRadius;
 moon.rotation.y = Math.PI; // a mesma face fica sempre voltada para a Terra
 moonPivot.add(moon);
 
-new THREE.TextureLoader().load(MOON.texture, (tex) => {
+loadTexture(MOON.texture, (tex) => {
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
   moon.material.map = tex;
