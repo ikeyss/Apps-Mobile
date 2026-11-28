@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ikeys Apps Mobile | Calculadoras, Jogos e Utilitários</title>
-    <meta name="description" content="Aplicativos profissionais para hidráulica, elétrica, pintura, construção, marketplace de serviços, jogos, tradutor de voz e identificação de animais pelo som. Baixe agora no Google Play.">
+    <meta name="description" content="Aplicativos profissionais para hidráulica, elétrica, pintura, construção, marketplace de serviços, jogos, tradutor de voz e identificação de animais pelo som. Desenvolvidos com inteligência artificial e tecnologia de ponta. Baixe agora no Google Play.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -313,6 +313,30 @@
 
         .copyright { color: #5a6a80; font-size: 0.8rem; }
 
+        .ai-box {
+            background: linear-gradient(135deg, rgba(0, 180, 255, 0.10), rgba(168, 85, 247, 0.10));
+            border: 1px solid rgba(0, 180, 255, 0.35);
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 760px;
+            margin-top: 1.5rem;
+        }
+        .ai-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .ai-box p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .ai-tools { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+        .ai-tool {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .ai-points { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.4rem 1rem; }
+        .ai-points li { font-size: 0.88rem; color: var(--muted); display: flex; gap: 0.4rem; }
+        .ai-points li::before { content: '✓'; color: var(--success); font-weight: 700; }
+
         .review-box {
             background: var(--card);
             border: 1px solid var(--border);
@@ -381,7 +405,7 @@
 
     <section class="hero">
         <h1>Calcule. Dimensione. Execute. Jogue.</h1>
-        <p>Aplicativos profissionais e jogos para o dia a dia. Cálculos técnicos, serviços, tradutor de voz, identificação de animais e puzzles tropicais. Precisão e diversão no seu bolso.</p>
+        <p>Aplicativos profissionais e jogos para o dia a dia. Cálculos técnicos, serviços, tradutor de voz, identificação de animais e puzzles tropicais. Desenvolvidos com inteligência artificial e tecnologia de ponta. Precisão e diversão no seu bolso.</p>
         <div class="badge-row">
             <span class="badge">📐 Cálculos Técnicos</span>
             <span class="badge">🏗️ Construção</span>
@@ -392,6 +416,7 @@
             <span class="badge">🎮 Jogos</span>
             <span class="badge">🌐 Tradutor</span>
             <span class="badge">🐾 Animais</span>
+            <span class="badge">🤖 Feito com IA</span>
         </div>
     </section>
 
@@ -587,6 +612,22 @@
             Desenvolvemos aplicativos profissionais e jogos focados em precisão, praticidade e diversão. 
             Nossas ferramentas ajudam profissionais do dia a dia a calcular, dimensionar e executar com mais segurança e produtividade.
         </p>
+        <div class="ai-box">
+            <h3>🤖 Desenvolvido com Inteligência Artificial</h3>
+            <p>Utilizamos inteligência artificial em todo o desenvolvimento dos nossos aplicativos. Trabalhamos com as ferramentas de IA mais avançadas do mercado, combinadas com tecnologia de ponta, para criar apps mais rápidos, modernos e com mais qualidade.</p>
+            <div class="ai-tools">
+                <span class="ai-tool">Codex</span>
+                <span class="ai-tool">Antigravity</span>
+                <span class="ai-tool">Claude</span>
+                <span class="ai-tool">Gemini</span>
+            </div>
+            <ul class="ai-points">
+                <li>Código moderno e otimizado</li>
+                <li>Atualizações e melhorias mais rápidas</li>
+                <li>Recursos inteligentes nos apps</li>
+                <li>Revisão humana em cada versão</li>
+            </ul>
+        </div>
     </section>
 
     <section class="section" id="contato" style="padding-top: 0;">
@@ -610,7 +651,7 @@
     <footer>
         <div class="footer-inner">
             <div class="footer-title">ikeys Apps Mobile — Precisão e diversão no seu bolso</div>
-            <p class="footer-text">Aplicativos para hidráulica, elétrica, pintura, construção, serviços, jogos, tradução e natureza.</p>
+            <p class="footer-text">Aplicativos para hidráulica, elétrica, pintura, construção, serviços, jogos, tradução e natureza.<br>Desenvolvidos com IA (Codex, Antigravity, Claude e Gemini) e tecnologia de ponta.</p>
             <div class="footer-links">
                 <a href="#apps">Aplicativos</a>
                 <a href="#contato">Contato</a>
